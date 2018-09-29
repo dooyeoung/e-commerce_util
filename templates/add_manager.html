@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+ <html lang="ko">
+<head>
+  <title>soul food </title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+     
+    <link rel="shortcut icon" href="#">
+    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <!-- jQuery UI CSS --> 
+    <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
+    
+
+    <!-- Bootstrap styling for Typeahead -->
+    <link href="../static/css/tokenfield-typeahead.css" type="text/css" rel="stylesheet">
+    <!-- Tokenfield CSS -->
+    <link href="../static/css/bootstrap-tokenfield.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+  td, th, .btn{
+    font-size: 12px;
+  }
+  .btn{
+    line-height: 1;
+  }
+</style>
+</head> 
+<body> 
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="#">SoulFood</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="btn_nav_add">추가 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="btn_nav_list">목록 </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#" id="btn_nav_manage">판매조합</a>
+      </li> 
+    </ul>
+  </div>
+</nav>
+<br/> 
+
+<div class="container">
+<button type="button" class="btn btn-primary btn-sm" id="btn_down">down</button>
+
+<table class="table table-sm text-center" >
+  <thead>
+    <tr>
+      <th scope="col" class='text-center'>#</th>
+      <th scope="col" class='text-center'>ID</th>
+      <th scope="col" class='text-center'>Type</th>
+      <th scope="col" class='text-center'>판매이름</th>
+      <th scope="col" class='text-center'>가격</th> 
+      <th scope="col" class='text-center'>옵션</th> 
+      <th scope="col" class='text-center'>#</th> 
+      <th scope="col" class='text-center'>#</th> 
+    </tr>
+  </thead>
+  <tbody id="table_body">
+  </tbody>
+</table>
+</div>
+
+<br/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
+
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../static/js/bootstrap-tokenfield.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/js/typeahead.bundle.min.js" charset="UTF-8"></script>
+
+<script src="../static/js/bootstrap3-typeahead.min.js"></script>
+
+
+<script type="text/javascript"> 
+$("#btn_nav_add").click(function()
+{ 
+  location.href="/"; 
+});
+
+$("#btn_nav_manage").click(function()
+{
+  location.href="/add_manager/";
+});
+
+$("#btn_nav_list").click(function()
+{
+  location.href="/list/";
+}); 
+
+function thumbnail(id, isdown){
+  window.open('/thumbnail?combi_id={0}&isdown={1}'.format(id,isdown), '_blank');
+}
+
+function add_g(id){
+  console.log(id);
+  var request = {'combi_id':id};
+
+  $.post('/get_combine/',request).done(function(data){ 
+    var dict = data.result;
+    var files = data.files;
+    var type = data.type;  
+  });
+}
+
+$(document).ready(function(){  
+  String.prototype.format = String.prototype.f = function() {
+      var s = this,
+        i = arguments.length;
+      while (i--) {
+          s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+      }
+      return s;
+  };  
+ 
+  $.post('/combine/' ).done(function(data){ 
+    var combis = data.result; 
+    for(var i=0; i<combis.length; i++){ 
+      var combi = combis[i];
+
+      var thum_tag = '<td><button type="button" class="btn btn-info btn-sm" onclick="thumbnail({0}, 0)" id="btn_th_{0}">Image</button></td>'.format(combi[0]);
+
+      var add_g_tag = '<td><button type="button" class="btn btn-info btn-sm" onclick="add_g({0}, 0)" id="btn_th_{0}">G Add</button></td>'.format(combi[0]);
+
+      var tag = "<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td>{6}{7}</tr>".format(i+1, combi[0], combi[1], combi[2],combi[3],combi[4], thum_tag, add_g_tag);
+
+      $("#table_body").append(tag);
+    }
+  });
+
+  $("#btn_down").click(function(){
+
+    var idarr = new Array();
+    $('[id^="btn_th_"]').each(function(){
+      var id = $(this).attr('id').replace('btn_th_','');
+
+      idarr.push(id);
+    });
+
+ 
+
+    var i =0
+    repeat = setInterval(function(){
+      //console.log(idarr[i]);
+      thumbnail(idarr[i], 1);
+
+      i++;
+      if(i == idarr.length){
+        clearInterval(repeat);
+      }
+    }, 700);
+
+
+      
+  });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>soul food </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="shortcut icon" href="#">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
+
+
+<link href="../static/css/callout.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/honeycombs.css"/>
+</head>
+<style type="text/css">
+  th, td, #message{
+    font-size: 14px;
+  }
+  #message{
+    font-size: 13px;
+  } 
+  th {
+    width: 90px;
+  }
+
+
+  #material>div, #material_s>div{
+    font-size: 12px;  
+    padding-left: 4px;
+    padding-right: 4px; 
+    padding-top: 2px;
+    padding-bottom: 2px; 
+    margin-top: 3px;
+    margin-right: 2px;
+    display: inline-block;
+  } 
+
+  .badge{
+    padding: 7px;
+  } 
+
+  #delivery>ul>li, #event{
+    font-size: 12px;  
+  }
+</style>
+
+<body>
+<br/>
+
+<div class="border" style="width: 700px; margin-left: 20px; padding:5px" id="borderline">
+<br/>  
+  <div style="text-align: center;">
+  <h1 ><strong id="title">죠리퐁 제품정보</strong></h1>
+  </div>
+ 
+  
+  <div class="bs-callout bs-callout-primary">
+    <h4 id="dealing-with-specificity">영양정보</h4>
+    <a href="#" class="badge badge-primary" id="amount_one">Success</a>
+    <a href="#" class="badge badge-primary" id="amount_total">Success</a>
+    <br/><br/>
+      <div class="honeycombs" id='nutrition'>
+        <div class="comb">
+          <div class="front-content">
+            <p>
+              I am a front title
+            </p>
+          </div>
+        </div>
+        <div class="comb">
+          <div class="front-content">
+            <p>
+              I am a front title
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-info">
+    <h4 id="dealing-with-specificity">상세정보</h4>
+    <table class="table table-sm" ">
+      <tbody id="tbody" >
+        <tr><th scope="row"">제품명</th><td id="name">Ottoddddddd</td></tr>
+        <tr><th scope="row">식품유형</th><td id="type">@twitter</td> </tr>
+        <tr><th scope="row">내용량</th><td id="weight">@twitter</td></tr>
+        <tr><th scope="row">제조원</th><td id="maker">@twitter</td></tr>
+        <tr><th scope="row">판매원</th><td id="seller">@twitter</td></tr>
+        <tr><th scope="row">고객상담실</th><td id="callcenter">@twitter</td></tr>
+        <tr><th scope="row">유통기한</th><td id="expired">@twitter</td></tr>
+        <tr><th scope="row">포장재질</th><td id="wrap">@twitter</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bs-callout bs-callout-success" id='material_container'>
+    <h4 id="dealing-with-specificity">원재료명</h4>
+    <div id="material"> 
+    </div>
+  </div> 
+
+  
+
+ 
+  <div class="bs-callout bs-callout-warning">
+    <h4 id="dealing-with-specificity">안내사항</h4>
+      <ul id="message"> 
+      </ul>
+  </div>
+<!-- 
+  <div class="bs-callout bs-callout-primary"> 
+    <div class="card text-center border-0"> 
+      <div class="card-body" id='event'>
+        <h1 class="card-title text-dark">사은품 추가 증정 Event</h1>
+        <p class="card-text">구매하시는 모든 고객님들께 인절미美를 추가 증정합니다</p>
+        <img src="../static/img/event.png" width="300px">
+        <br/>
+        <br/>
+        <p class="card-text">구매하시는 모든 고객님들께 인절미美를 추가 증정합니다</p>
+      </div> 
+    </div>
+  </div>
+
+  <div class="bs-callout bs-callout-default" id='delivery'>
+    <h4 id="dealing-with-specificity">배송안내 (1588-1255)</h4>
+      <ul >
+        <li>배송기간은 택배 발송이로 1~3일 정도 소요됩니다.</li>
+        <li>배송은 평일 오전 9시 전에 입금이 확인이 완료된 주문건까지 당일발송을 원칙으로 합니다.</li>
+        <li>상품의 일시품절, 주문시 기재사항의 누락, 택배사의 사정으로 배송이 2~3일 정도 늦어질 수 있습니다.</li>
+        <li>금/토/일요일 주문건은 월요일에 상품출고 됩니다.</li>
+        <li>모든상품은 CJ택배로 안전하게 배송됩니다.</li>
+      </ul>
+    <h4 id="dealing-with-specificity">반품/교환 (1588-1255)</h4>
+      <ul>
+        <li>모든상품의 반품 및 교환은 상품 배송완료 후 7일이내에 가능합니다.</li>
+        <li>반품/교환 의사결정 후 고객센터로 연락주시면 처리가 가능합니다.</li>
+        <li>불량시에는 동일상품으로만 교환이 가능합니다.</li>
+        <li>배송상태 검식시 '배송중'일 경우 주소변경, 취소, 반품, 물품변경이 불가능 합니다.</li>
+        <li>부정확한 배송지 주소로 반송될 경우 왕복택배비는 구매자 부담입니다.</li>
+        <li>고객님의 단순 변심으로 인한 교환일 경우 왕복 택배비 5,000원을 동봉하여 보내주셔야 합니다.</li>
+      </ul>
+    <h4 id="dealing-with-specificity">고객문의 (070-4151-2465)</h4>
+      <ul> 
+        <li>배송지 및 수령인 정보변경, 상품변경 등 상담은 고객센터로 문의바랍니다.</li>
+        <li>상담이 가능한 시간은 평일 오전 10:00 ~ 16:30 까지 입니다. </li>
+        <li>점심 시간 12:30 ~ 13:30 에는 상담이 불가하니 이점 양해 부탁드립니다.</li>
+        <li>토요일, 일요일, 공휴일에는 상담이 불가능 합니다.</li>
+      </ul>
+  </div> -->
+   
+</div>  
+<br/>
+
+
+
+
+<div class="container">
+<button type="button" class="btn btn-primary" id="btn_capture">Primary</button>
+</div>
+
+
+
+<a id="downloadlink" href=""></a>
+
+<div class='container'>
+<image id="theimage"></image>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script src="../static/js/jquery.honeycombs.js"></script> 
+<script src="../static/js/html2canvas.min.js"></script>
+
+
+
+
+<script type="text/javascript"> 
+$(document).ready(function() {
+  String.prototype.format = String.prototype.f = function() {
+      var s = this,
+        i = arguments.length;
+      while (i--) {
+          s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+      }
+      return s;
+  }; 
+
+  var getParameters = function (paramName) {
+    // 리턴값을 위한 변수 선언
+    var returnValue;
+
+    // 현재 URL 가져오기
+    var url = location.href;
+
+    // get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔
+    var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+
+    // 나누어진 값의 비교를 통해 paramName 으로 요청된 데이터의 값만 return
+    for (var i = 0; i < parameters.length; i++) {
+        var varName = parameters[i].split('=')[0];
+        if (varName.toUpperCase() == paramName.toUpperCase()) {
+            returnValue = parameters[i].split('=')[1];
+            return decodeURIComponent(returnValue);
+        }
+    }
+  };
+
+var request = {'item_id':getParameters('item_id')} 
+var isdown = getParameters('isdown');
+var titem = ''
+$.post('/view_item/',request ).done(function(data){ 
+    var item = data.result[0][0];
+    titem = item;
+    var nutrition_basic = data.result[1][0];
+    var nutrition_etc = data.result[2][0];
+    var material = data.result[3][0];
+    var message = data.result[4][0];
+ 
+    setdata_item(item);
+
+    setdata_nutrition_basic(nutrition_basic);
+
+    setdata_nutrition_etc(nutrition_etc);
+    $('.honeycombs').honeycombs({
+      combWidth: 90,
+      margin: -7,
+      threshold: 10
+    }); 
+
+
+    setdata_material(material);
+
+    setdata_message(message);
+    
+    if(isdown == 1){
+      html2img(true); 
+    }
+  });
+
+function setdata_nutrition_basic(basic){
+    $("#nutrition").empty();
+
+    var n_name = ['열량','탄수화물','당류','단백질','지방','포화지방','트랜스지방','콜레스테롤','나트륨']
+    var units = ['㎉','g','g','g','g','g','g','㎎','㎎']
+    var limit = [-1,330,100,55,51,15,-1,300,2000]
+
+    for(var i=0; i< n_name.length; i++){ 
+
+      var pt ='';
+      if(limit[i]!=-1)
+      {
+        pt =  Math.floor(basic[i+2] / limit[i] * 100) + '%';
+      }
+
+      var tag = '<div class="comb"><div class="front-content"><p>{0}<br/>{1}<small>{2}</small><br/><small>{3}</small></p></div></div>'.format(n_name[i], basic[i+2],units[i],pt);
+
+      $("#nutrition").append(tag);
+    }
+
+    $("#amount_one").text("1회 제공량 : {0}{1}".format(basic[11], basic[13]));
+    $("#amount_total").text("총 제공량 : {0}{1}".format(basic[12], basic[13]));
+  
+  }
+
+  function setdata_nutrition_etc(etc){
+    var n_name = [
+    '식이섬유','엽산','나이아신','철분','칼슘','비타민A','비타민B1','비타민B2','비타민B6','비타민C','비타민D','비타민E'];
+    var units = [
+    'g','㎍','㎎NE','㎎','㎎','㎍RE','㎎','㎎','㎎','㎎','㎎','㎍','㎎α-TE'];
+    var limit= [25,400,15,12,700,700,1.2,1.4,1.5,100,5,11]
+
+    for(var i=0; i< etc.length-2; i++){
+      if(etc[i+2] != null){ 
+
+        var pt ='';
+        if(limit[i]!=-1)
+        {
+          pt =  Math.floor(etc[i+2] / limit[i] * 100) + '%';
+        }
+
+        var tag = '<div class="comb"><div class="front-content"><p>{0}<br/>{1}<small>{2}</small><br/><small>{3}</small></p></div></div>'.format(n_name[i], etc[i+2],units[i],pt);
+        $("#nutrition").append(tag);
+      }
+    }
+  }
+  
+  function setdata_message(message){
+    var msg = 
+    ['직사광선을 피하고 온도,습도가 낮으며 통풍이 잘되는 곳에 보관해 주시고 개봉후 빨리 드시기 바랍니다',
+      '제품에 이상이 있을경우 구입 점포나 전국 각 지점 및 영업소 또는 본사 고객상담실에서 반품 교환 해드립니다',
+      '본 제품은 공정거래위원회 고시 소비자 분쟁해결기준에 의거 정당한 소비자의 피해에 대한 교환, 환불해 드립니다',
+      '본 제품은 제품 보호를 위해 질소 충전을 하였습니다',
+      '이 제품은 {0}(을)를 사용한 제품과 같은 제조시설에서 제조하고 있습니다',
+      '과량섭취시 설사를 일으킬 수 있습니다',
+      '치아가 좋지 않으신 분은 드실때 주의를 요합니다'
+    ];
+
+    $("#message").empty(); 
+    for(var i=0; i<message.length-2; i++){
+
+      if(message[i+2]==1){
+
+        if(i==4){
+          tmp = message[message.length-1].replace(/;/gi,',') ;
+ 
+          msg[i] = msg[i].format( tmp );
+          var tag = "<li>{0}</li>".format(msg[i]);
+          $("#message").append(tag); 
+        }
+        else{
+          var tag = "<li>{0}</li>".format(msg[i]);
+          $("#message").append(tag); 
+        } 
+      }
+      
+    } 
+    $("#message").append("<li>자연은 아름답게 환경은 깨끗하게 / 부정, 불량식품 신고는 국번없이 1399</li>"); 
+  }
+
+  function setdata_material(material){
+
+    arr = material[2].split('/');
+
+    for(var idx=0; idx<arr.length; idx++){
+      var sen = arr[idx].trim();
+
+      if(sen.length == 0){ 
+        continue;
+      }
+
+      //제목이 있는경우
+      titlearr = sen.split('=');
+      if(titlearr.length>1){ 
+        $("#material").append(titlearr[0] +"<br/>");
+
+        dataarr= titlearr[1].split(';'); 
+        for(var i=0; i<dataarr.length; i++){
+          data = dataarr[i].trim();
+          if(data.length == 0){ 
+            continue;
+          }
+          var tag = '<div class="border border-success rounded text-success">{0}</div>'.format(data);
+          $("#material").append(tag);
+        } 
+      }
+      else
+      {
+        if(idx != arr.length-1){
+          $("#material").append("<br/>");
+        }
+
+        dataarr= titlearr[0].split(';'); 
+        for(var i=0; i<dataarr.length; i++){
+          data = dataarr[i].trim();
+          if(data.length == 0){ 
+            continue;
+          }
+          var tag = '<div class="border border-success rounded text-success">{0}</div>'.format(data);
+          $("#material").append(tag);
+        }
+      }
+
+      if(idx != arr.length-1){
+        $("#material").append("<br/>");
+      }
+
+    }
+
+
+    // arr = material[2].split(';');
+    
+    // $("#material").empty();
+    // for(var i=0; i<arr.length; i++){
+    //   data = arr[i].trim();
+
+    //   if(data.length == 0){ 
+    //     continue;
+    //   }
+    //   var tag = '<div class="border border-success rounded text-success">{0}</div>'.format(data);
+    //   $("#material").append(tag);
+    // } 
+
+
+    //특정성분
+    if(material[3] != null){
+ 
+      arr = material[3].split(';'); 
+      var tags = new Array();
+      for(var i=0; i<arr.length; i++){  
+        data = arr[i].trim();
+
+        if(data.length == 0){ 
+          continue;
+        }
+
+        var tag = '<div class="border border-danger rounded text-danger">{0}</div>'.format(data);
+        tags.push(tag);
+      }
+
+      if(tags.length>0){
+        $("#material_container").after('<div class="bs-callout bs-callout-danger "><h4 id="dealing-with-specificity">특정성분</h4><div id="material_s"> </div>  </div>');
+
+        for(var i=0; i<tags.length; i++)
+        {
+          $("#material_s").append(tags[i]);
+        }
+      }
+    }
+  }
+
+  
+  var itemname = '';
+  function setdata_item(item){
+    itemname = item[1];
+    $("#title").text(item[1] + " 제품정보");
+    $("#name").text(item[1]);
+    $("#price").text(item[2]);
+    $("#weight").text(item[3] + 'g');
+    $("#company").text(item[4]);
+    $("#type").text(item[5]);
+    $("#wrap").text(item[6]);
+    $("#expired").text(item[7]); 
+    $("#callcenter").text(item[9]);
+    $("#maker").text(item[10]);
+    $("#seller").text(item[11]);
+
+    if(item[8] != null){
+      $("#tbody").append("<tr><th>품목보고번호</td><td>"+item[8]+"</td></tr>")
+    }
+  }
+
+
+
+
+$("#btn_capture").click(function(){ 
+  html2img(false);
+});
+
+function html2img(isclose){ 
+  html2canvas(document.querySelector("#borderline")).then(canvas => {
+    var a = document.getElementById("downloadlink");
+
+    a.href = canvas.toDataURL("image/jpeg").replace("Image/jpeg", "image/octet-stream");
+    //a.download =  "{0}_{1}_{2}_nutr.jpg".format(titem[4], titem[1], getParameters('item_id'));
+    a.download =  "{0}_nutr.jpg".format(getParameters('item_id'));
+
+    //"{0}_{1}.jpg".format(getParameters('item_id'), itemname);
+    a.click();
+    //document.body.appendChild(canvas)
+    
+    setTimeout(function(){window.close();}, 2000)
+       
+  });
+
+}
+
+
+
+});
+
+</script>
+</body>
+</html>

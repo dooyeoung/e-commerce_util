@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+ <html lang="ko">
+<head>
+	<title>soul food </title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="shortcut icon" href="#">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+	<!-- jQuery UI CSS --> 
+    <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
+    
+
+    <!-- Bootstrap styling for Typeahead -->
+    <link href="../static/css/tokenfield-typeahead.css" type="text/css" rel="stylesheet">
+    <!-- Tokenfield CSS -->
+    <link href="../static/css/bootstrap-tokenfield.css" type="text/css" rel="stylesheet">
+ 
+</head>
+<body> 
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="#">SoulFood</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" id="btn_nav_add">추가 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="btn_nav_list">목록</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="btn_nav_manage">판매조합</a>
+      </li> 
+    </ul>
+  </div>
+</nav>
+<br/> 
+ 
+
+<form class="container" id="form1" novalidate>
+	<!--기본정보-->
+	<div class="row">
+		<div class="col-6 col-md-12">
+			<h1>기본정보</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 col-md-12">
+    		<label for="exampleFormControlFile1">이미지 등록</label>
+    		<input type="file" class="form-control-file" id="input_file">
+    		<img id="input_img" src="" height="300px">
+ 		</div>
+ 		<div class="col-12 col-md-12">
+ 		<button type="button" class="btn btn-primary" id="btn_upload">upload</button>
+ 		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-6 col-md-3">
+			<label for="name">제품명</label>
+			<input type="text" class="form-control form-control-sm" id="name" name="name" placeholder="제품명" required>
+			<div class="invalid-feedback">
+				 제품명을 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-3">
+			<label for="company">제조사</label>
+			<input type="text" class="form-control form-control-sm" id="company" name="company" placeholder="제조사(크라운,해태,빙그레)" required>
+			<div class="invalid-feedback">
+				 제조사를 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-3">
+			<label for="price">가격</label>
+			<input type="text" class="form-control form-control-sm" id="price" name="price" placeholder="가격(원)" required>
+			<div class="invalid-feedback">
+				 가격을 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-3">
+			<label for="weight">용량(g)</label>
+			<input type="text" class="form-control form-control-sm" id="weight" name="weight" placeholder="용량(g)" required>
+			<div class="invalid-feedback">
+				 용량을 입력하세요
+			</div>
+		</div>
+	</div>
+	<br/>
+	<!--상세정보-->
+	<div class="row">
+		<div class="col-6 col-md-12">
+			<h1>상세정보</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-3">
+			<label for="type">식품유형</label>
+			<input type="text" class="form-control form-control-sm" id="type" name="type" placeholder="과자(유탕처리제품)" required value="과자(유탕처리제품)">
+			<div class="invalid-feedback">
+				 식품유형을 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-3">
+			<label for="wrap">포장재질</label>
+			<input type="text" class="form-control form-control-sm" id="wrap" name="wrap" placeholder="폴리에스테린" required value="폴리에틸렌">
+			<div class="invalid-feedback">
+				 포장제질을 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-3">
+			<label for="expired">유통기한</label>
+			<input type="text" class="form-control form-control-sm" id="expired" name="expired" placeholder="측면표기일까지" required >
+			<div class="invalid-feedback">
+				 유통기한을 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-3">
+			<label for="item_id">품목보고번호</label>
+			<input type="text" class="form-control form-control-sm" id="item_id" name="item_id" placeholder="000000">
+		</div>
+		<div class="col-6 col-md-4">
+			<label for="callcenter">고객상담실</label>
+			<input type="text" class="form-control form-control-sm" id="callcenter" name="callcenter" placeholder="070-123-123" required>
+			<div class="invalid-feedback">
+				 고객상담실 연락처를 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<label for="maker">제조원</label>
+			<input type="text" class="form-control form-control-sm" id="maker" name="maker" placeholder="용상" required>
+			<div class="invalid-feedback">
+				 제조원을 입력하세요
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<label for="seller">판매원</label>
+			<input type="text" class="form-control form-control-sm" id="seller" name="seller" placeholder="용산" required>
+			<div class="invalid-feedback">
+				 판매원을 입력하세요
+			</div>
+		</div>
+	</div>
+	<br/>
+	<!--영양정보-->
+	<div class="row">
+		<div class="col-6 col-md-12">
+			<h1>영양정보</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="kcal">1회 제공량</label>
+			<input type="text" class="form-control form-control-sm" id="amount_one" name="amount_one" placeholder="1/5" required>
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="kcal">총 제공량</label>
+			<input type="text" class="form-control form-control-sm" id="amount_total" name="amount_total" placeholder="1" required>
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="kcal">단위</label>
+			<input type="text" class="form-control form-control-sm" id="amount_unit" name="amount_unit" placeholder="개, 봉지" value="개" required>
+		</div>
+
+		<div class="col-6 col-md-2">
+			<label for="kcal">열량㎉</label>
+			<input type="text" class="form-control form-control-sm" id="kcal" name="kcal" placeholder="180㎉" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="carbohydrate">탄수화물(g)</label>
+			<input type="text" class="form-control form-control-sm" id="carbohydrate" name="carbohydrate" placeholder="100g" required>
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="sugar">당류(g)</label>
+			<input type="text" class="form-control form-control-sm" id="sugar" name="sugar" placeholder="100g" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="protein">단백질(g)</label>
+			<input type="text" class="form-control form-control-sm" id="protein" name="protein" placeholder="100g" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="fat">지방(g)</label>
+			<input type="text" class="form-control form-control-sm" id="fat" name="fat" placeholder="100g" required>
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="fat_s">포화지방(g)</label>
+			<input type="text" class="form-control form-control-sm" id="fat_s" name="fat_s" placeholder="100g" required>
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="fat_t">트랜스지방(g)</label>
+			<input type="text" class="form-control form-control-sm" id="fat_t" name="fat_t" placeholder="100g" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="cholesterol">콜레스테롤(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="cholesterol" name="cholesterol" placeholder="100㎎" required>
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="salt">나트륨(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="salt" name="salt" placeholder="100㎎" required>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="fiber">식이섬유(g)</label>
+			<input type="text" class="form-control form-control-sm" id="fiber" name="fiber" placeholder="100g">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="folate">엽산(㎍)</label>
+			<input type="text" class="form-control form-control-sm" id="folate" name="folate" placeholder="100㎍">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="niacin">나이아신(㎎NE)</label>
+			<input type="text" class="form-control form-control-sm" id="niacin" name="niacin" placeholder="100㎎NE">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="iron">철분(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="iron" name="iron" placeholder="100㎎">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="calcium">칼슘(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="calcium" name="calcium" placeholder="100㎎">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<label for="vitamin_a">비타민A(㎍RE)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_a" name="vitamin_a" placeholder="100㎍RE">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="vitamin_b1">비타민B1(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_b1" name="vitamin_b1" placeholder="100㎎">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="vitamin_b2">비타민B2(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_b2" name="vitamin_b2" placeholder="100㎎">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="vitamin_b6">비타민B6(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_b6" name="vitamin_b6" placeholder="100㎎">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="vitamin_c">비타민C(㎎)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_c" name="vitamin_c" placeholder="100㎎">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="vitamin_d">비타민D(㎍)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_d" name="vitamin_d" placeholder="100㎎">
+		</div>
+		<div class="col-6 col-md-2">
+			<label for="vitamin_e">비타민E(㎎α-TE)</label>
+			<input type="text" class="form-control form-control-sm" id="vitamin_e" name="vitamin_e" placeholder="100mga-TE">
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-6 col-md-12">
+			<h1>원재료명</h1>
+		</div>
+	</div>
+	<div class="row"> 
+		<div class="col-md-12">
+			<input type="text" class="form-control" id="material" name="material" value="" />
+		</div>
+
+		<div class="col-md-12">
+			<h4>특정성분</h4>
+		</div>
+		<div class="col-md-12">
+			<input type="text" class="form-control" id="material_s" name="material_s" value="" />
+		</div>
+
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-6 col-md-12">
+			<h1>안내사항</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" value="" id="msg1" name="msg1" checked=true>
+			직사광선을 피하고 온도,습도가 낮으며 통풍이 잘되는 곳에 보관해 주시고 개봉후 빨리 드시기 바랍니다 </label>
+		</div>
+		<div class="col-md-12">
+			<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" value="" id="msg2" name="msg2" checked=true>
+			제품에 이상이 있을경우 구입 점포나 전국 각 지점 및 영업소 또는 본사 고객상담실에서 반품 교환 해드립니다 </label>
+		</div>
+		<div class="col-md-12">
+			<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" value="" id="msg3" name="msg3" checked=true>
+			본 제품은 공정거래위원회 고시 소비자 분쟁해결기준에 의거 정당한 소비자의 피해에 대한 교환, 환불해 드립니다 </label>
+		</div>
+		<div class="col-md-12">
+			<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" value="" id="msg4" name="msg4">
+			본 제품은 제품 보호를 위해 질소 충전을 하였습니다 </label>
+		</div>
+		<div class="col-md-12">
+			<label class="form-check-label" >
+			<input class="form-check-input" type="checkbox" value="" id="msg5" name="msg5" checked=true>
+			<div id="msg5_label">이 제품은 사용한 제품과 같은 제조시설에서 제조하고 있습니다</div> </label>
+		</div>
+		<div class="container">
+			<div class="col-md-6"> 
+				<input type="text" class="form-control" id="msg5_txt" name="msg5_txt" value="" /> 
+			</div>
+		</div>
+		<div class="col-md-12">
+			<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" value="" id="msg6" name="msg6" checked=true>
+			과량섭취시 설사를 일으킬 수 있습니다</label>
+		</div>
+		<div class="col-md-12">
+			<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" value="" id="msg7" name="msg7" checked=true>
+			치아가 좋지 않으신 분은 드실때 주의를 요합니다</label>
+		</div>
+	</div>
+	<br/> 
+</form>
+<div class="container">
+	<button class="btn btn-primary" id="btn_add">상품 추가</button> 
+</div>
+
+
+
+<br/>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
+
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../static/js/bootstrap-tokenfield.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="../static/js/typeahead.bundle.min.js" charset="UTF-8"></script>
+
+<script src="../static/js/bootstrap3-typeahead.min.js"></script>
+ 
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	jQuery.fn.serializeObject = function() {
+		var obj = null;
+		try {
+		    if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+		        var arr = this.serializeArray();
+		        if (arr) {
+		            obj = {};
+		            jQuery.each(arr, function() {
+		                obj[this.name] = this.value;
+		            });
+		        }//if ( arr ) {
+		    }
+		} catch (e) {
+		    alert(e.message);
+		} finally {
+		} 
+		return obj;
+	};
+
+
+	var upload_file;
+	$("#input_file").change(function(evt){
+
+		var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+        if (FileReader && files && files.length) {
+	        var fr = new FileReader();
+	        fr.onload = function () {
+	            document.getElementById("input_img").src = fr.result;
+	        }
+	        fr.readAsDataURL(files[0]);
+ 
+	        //console.log(files[0]);
+	        upload_file = files[0];
+   		} 
+	});
+
+	$("#btn_upload").click(function(){
+
+		var imgdata = new FormData();
+    	imgdata.append('file', upload_file); 
+
+		$.ajax({
+		  url: '/file_upload/',
+		  data: imgdata,
+		  processData: false,
+		  contentType: false,
+		  type: 'POST',
+		  success: function(data){
+		    if(data.result==true){
+
+		    }
+		    else
+		    {
+		    	console.log("error");
+		    }
+		  }
+		});
+	});
+  
+
+ 
+
+
+	$("#type").typeahead({
+		source: [
+			{id: "someId0", name: "과자"}, 
+		    {id: "someId1", name: "과자(유처리제품)"},
+		    {id: "someId2", name: "과자(유탕처리제품)"}, 
+		    {id: "someId3", name: "초콜릿가공품"}, 
+		],autoSelect: true
+	});
+
+	// 제조사 자동완성
+	$("#company").typeahead({
+		source: [
+		    {id: "someId1", name: "(주)크라운"},
+		    {id: "someId2", name: "(주)빙그레"},
+		    {id: "someId3", name: "해태제과식품(주)"},
+		],autoSelect: true
+	});
+
+	//유통기한 자동완성
+	$("#expired").typeahead({
+		source: [
+		    {id: "someId1", name: "측면표기일까지"},
+		    {id: "someId2", name: "후면표기일까지"},
+		    {id: "someId2", name: "밑표기일까지"},
+		],autoSelect: true
+	});
+
+	//포장재질 자동완성
+	$("#wrap").typeahead({
+		source: [
+		    {id: "someId1", name: "폴리에틸렌"}, 
+		    {id: "someId2", name: "폴리에스테린"}, 
+		    {id: "someId3", name: "폴리에틸렌수지"}, 
+		    {id: "someId4", name: "폴리프로필렌"}, 
+		    {id: "someId4", name: "폴리프로필렌(외포),폴리스티렌(용기)"}, 
+		    {id: "someId5", name: "식용왁스"}, 
+		],autoSelect: true
+	});
+
+	//고객상담실
+	$("#callcenter").typeahead({
+		source: [
+		    {id: "someId1", name: "080-233-6677"}, 
+		],autoSelect: true
+	});
+
+	$("#maker").typeahead({
+		source: [
+		    {id: "someId1", name: "해태제과식품(주)/충북 청주시 홍덕구 공단로 48"}, 
+		],autoSelect: true
+	});
+
+	$("#seller").typeahead({
+		source: [
+		    {id: "someId1", name: "해태제과식품(주)/서울특별시 용산구 한강대로 72길 3"}, 
+		],autoSelect: true
+	});
+
+
+
+
+	
+	//재료명 입력 
+	$('#material').tokenfield({
+		autocomplete: {
+			source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
+			delay: 10
+		},showAutocompleteOnFocus: true
+	}) 
+	$('#material').on('tokenfield:createdtoken', function (e) {
+	    tokens = $('#material').tokenfield("getTokens");
+
+	    tags = new Array();
+	    for(var i=0; i<tokens.length; i++){
+	    	tag = tokens[i].value;
+	    	tags.push(tag)
+	    }  
+
+		$('#material').data('bs.tokenfield').$input.autocomplete({source: tags});
+	}) 
+
+	//특정 재료명 입력 
+	$('#material_s').tokenfield({
+		autocomplete: {
+			source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
+			delay: 10
+		},showAutocompleteOnFocus: true
+	}) 
+	$('#material_s').on('tokenfield:createdtoken', function (e) {
+	    tokens = $('#material_s').tokenfield("getTokens");
+
+	    tags = new Array();
+	    for(var i=0; i<tokens.length; i++){
+	    	tag = tokens[i].value;
+	    	tags.push(tag)
+	    }  
+
+		$('#material_s').data('bs.tokenfield').$input.autocomplete({source: tags});
+	}) 
+
+
+
+	//공장시설유형
+	$('#msg5_txt').tokenfield({
+		autocomplete: {
+			source: ['밀','대두'],
+			delay: 10
+		},showAutocompleteOnFocus: true
+	}) 
+
+	$('#msg5_txt').on('tokenfield:createdtoken', function (e) {
+	    tokens = $('#msg5_txt').tokenfield("getTokens");
+
+	    tags = new Array();
+	    for(var i=0; i<tokens.length; i++){
+	    	tag = tokens[i].value;
+	    	tags.push(tag)
+	    }  
+
+		$('#msg5_txt').data('bs.tokenfield').$input.autocomplete({source: tags});
+
+		var tmp = $('#msg5_txt').tokenfield("getTokensList").replace(/;/gi,',')
+		var msg = "이 제품은 "+tmp+"(을)를 사용한 제품과 같은 제조시설에서 제조하고 있습니다"
+		$("#msg5_label").html(msg);
+	}) 
+ 
+
+
+
+ 
+	// 추가
+	$("#btn_add").click(function()
+	{ 
+		if ($("#form1")[0].checkValidity() === false) {
+	        console.log("there is error");
+	        event.preventDefault();
+	        event.stopPropagation();
+	    }
+	    else{
+	    	console.log("there is no error")   
+
+			$("#form1")[0].classList.add('was-validated');
+
+			var formData = $("#form1").serializeObject(); 
+			 
+			formData['msg1'] = $("#msg1").is(':checked') == true? 1 : 0;
+			formData['msg2'] = $("#msg2").is(':checked') == true? 1 : 0;
+			formData['msg3'] = $("#msg3").is(':checked') == true? 1 : 0;
+			formData['msg4'] = $("#msg4").is(':checked') == true? 1 : 0;
+			formData['msg5'] = $("#msg5").is(':checked') == true? 1 : 0;
+			formData['msg6'] = $("#msg6").is(':checked') == true? 1 : 0;
+			formData['msg7'] = $("#msg7").is(':checked') == true? 1 : 0;
+
+			formData["material"] = $('#material').tokenfield("getTokensList");
+			formData["material_s"] = $('#material_s').tokenfield("getTokensList");
+			formData["msg5_txt"] = $('#msg5_txt').tokenfield("getTokensList");
+
+			console.log(formData);
+				 
+			var result = false;
+			var last_id = -1;
+			$.post('/add/', formData).done(function(data){ 
+
+				result = data.result;
+				last_id = data.last_id;
+				if (data.result == false){
+					alert("add error");
+				}
+				else
+				{
+					console.log(result);
+					console.log(last_id);
+				 
+					if(result == true){
+						var imgdata = new FormData();
+				    	imgdata.append('file', upload_file); 
+				    	imgdata.append('last_id', last_id); 
+				    	
+						$.ajax({
+							url: '/file_upload/',
+							data: imgdata,
+							processData: false,
+							contentType: false,
+							type: 'POST',
+							success: function(data){ 
+								if(data.result==true){
+
+								}
+								else
+								{
+									console.log("error");
+								}
+							}
+						});
+					}
+				}
+			}); 
+		}
+	}); 
+ 
+
+
+	$("#btn_nav_add").click(function()
+	{ 
+		location.href="/"; 
+	});
+
+	$("#btn_nav_manage").click(function()
+	{
+		location.href="/add_manager/";
+	});
+
+	$("#btn_nav_list").click(function()
+	{
+		location.href="/list/";
+	});
+
+});
+</script>
+
+</body>
+</html>

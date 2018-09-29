@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>soul food </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="shortcut icon" href="#">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
+
+
+<link href="../static/css/callout.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/honeycombs.css"/>
+</head>
+<style type="text/css">
+  th, td, #message{
+    font-size: 14px;
+  }
+  #message{
+    font-size: 13px;
+  } 
+  th {
+    width: 90px;
+  }
+
+
+  #material>div, #material_s>div{
+    font-size: 12px;  
+    padding-left: 4px;
+    padding-right: 4px; 
+    padding-top: 2px;
+    padding-bottom: 2px; 
+    margin-top: 3px;
+    margin-right: 2px;
+    display: inline-block;
+  } 
+
+  .badge{
+    padding: 7px;
+  } 
+
+  #delivery>ul>li, #event{
+    font-size: 12px;  
+  }
+</style>
+
+<body> 
+<div class="border" style="width: 700px; padding-left:5px;padding-right:5px;padding-bottom:5px;" id="borderline">
+	
+  <div class="bs-callout bs-callout-primary" style="margin-top: 0px"> 
+    <div class="card text-center border-0"> 
+      <div class="card-body" id='event'>
+        <h1 class="card-title text-dark">사은품 추가 증정 Event</h1>
+        <p class="card-text">구매하시는 모든 고객님들께 인절미美를 추가 증정합니다</p>
+        <img src="../static/img/event.png" width="300px">
+        <br/>
+        <br/>
+        <p class="card-text">구매하시는 모든 고객님들께 인절미美를 추가 증정합니다</p>
+      </div> 
+    </div>
+  </div>
+
+  <div class="bs-callout bs-callout-default" id='delivery'>
+    <h4 id="dealing-with-specificity">배송안내 (1588-1255)</h4>
+      <ul >
+        <li>배송기간은 택배 발송이로 1~3일 정도 소요됩니다.</li>
+        <li>배송은 평일 오전 9시 전에 입금이 확인이 완료된 주문건까지 당일발송을 원칙으로 합니다.</li>
+        <li>상품의 일시품절, 주문시 기재사항의 누락, 택배사의 사정으로 배송이 2~3일 정도 늦어질 수 있습니다.</li>
+        <li>금/토/일요일 주문건은 월요일에 상품출고 됩니다.</li>
+        <li>모든상품은 CJ택배로 안전하게 배송됩니다.</li>
+      </ul>
+    <h4 id="dealing-with-specificity">반품/교환 (1588-1255)</h4>
+      <ul>
+        <li>모든상품의 반품 및 교환은 상품 배송완료 후 7일이내에 가능합니다.</li>
+        <li>반품/교환 의사결정 후 고객센터로 연락주시면 처리가 가능합니다.</li>
+        <li>불량시에는 동일상품으로만 교환이 가능합니다.</li>
+        <li>배송상태 검식시 '배송중'일 경우 주소변경, 취소, 반품, 물품변경이 불가능 합니다.</li>
+        <li>부정확한 배송지 주소로 반송될 경우 왕복택배비는 구매자 부담입니다.</li>
+        <li>고객님의 단순 변심으로 인한 교환일 경우 왕복 택배비 5,000원을 동봉하여 보내주셔야 합니다.</li>
+      </ul>
+    <h4 id="dealing-with-specificity">고객문의 (070-4151-2465)</h4>
+      <ul> 
+        <li>배송지 및 수령인 정보변경, 상품변경 등 상담은 고객센터로 문의바랍니다.</li>
+        <li>상담이 가능한 시간은 평일 오전 10:00 ~ 16:30 까지 입니다. </li>
+        <li>점심 시간 12:30 ~ 13:30 에는 상담이 불가하니 이점 양해 부탁드립니다.</li>
+        <li>토요일, 일요일, 공휴일에는 상담이 불가능 합니다.</li>
+      </ul>
+  </div>
+   
+</div>  
+<br/>
+
+
+
+
+<div class="container">
+<button type="button" class="btn btn-primary" id="btn_capture">Primary</button>
+</div>
+
+
+
+<a id="downloadlink" href=""></a>
+ 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script src="../static/js/jquery.honeycombs.js"></script> 
+<script src="../static/js/html2canvas.min.js"></script>
+
+
+
+
+<script type="text/javascript"> 
+$(document).ready(function() {
+   
+ 
+$("#btn_capture").click(function(){ 
+  html2img();
+});
+
+function html2img(){ 
+  html2canvas($("#borderline")[0],{ 
+  }).then(function(canvas){
+
+    var a = document.getElementById("downloadlink");
+
+    a.href = canvas.toDataURL("image/jpeg").replace("Image/jpeg", "image/octet-stream");
+    a.download = 'notice.jpg';
+    a.click();
+    //document.body.appendChild(canvas)
+	}); 
+}
+ 
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>soul food </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="shortcut icon" href="#">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
+
+
+<link href="../static/css/callout.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/honeycombs.css"/>
+</head>
+<style type="text/css"> 
+
+#btn_capture{
+	position: absolute;
+	left:1000px;
+}
+img{
+	position: absolute;
+}
+
+[id^="borderline_"]{
+	position: absolute;
+}
+</style>
+
+<body id="body"> 
+<!-- <div class="border" style="width: 1000px; height: 1000px;" id="borderline">
+<div class="border" style="width: 840px; height: 840px; margin: 80px;" id="img_body">
+</div>
+</div>   -->
+<br/>
+
+
+
+
+<div class="container">
+<button type="button" class="btn btn-primary" id="btn_capture">Primary</button>
+</div>
+
+
+
+<a id="downloadlink" href=""></a>
+ 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script src="../static/js/jquery.honeycombs.js"></script> 
+<script src="../static/js/html2canvas.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+String.prototype.format = String.prototype.f = function() {
+  var s = this,
+    i = arguments.length;
+  while (i--) {
+      s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+  }
+  return s;
+}; 
+
+var getParameters = function (paramName) {
+    // 리턴값을 위한 변수 선언
+    var returnValue;
+
+    // 현재 URL 가져오기
+    var url = location.href;
+
+    // get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔
+    var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+
+    // 나누어진 값의 비교를 통해 paramName 으로 요청된 데이터의 값만 return
+    for (var i = 0; i < parameters.length; i++) {
+        var varName = parameters[i].split('=')[0];
+        if (varName.toUpperCase() == paramName.toUpperCase()) {
+            returnValue = parameters[i].split('=')[1];
+            return decodeURIComponent(returnValue);
+        }
+    }
+};
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+$(document).ready(function() {
+
+var request = {'combi_id':getParameters('combi_id')};
+$.post('/get_combine/',request).done(function(data){ 
+	 
+	var keys = Object.keys(data.result);
+	var values = Object.values(data.result);
+	var ids = data.ids;
+	var th_cnt = values.length; 
+
+	console.log(data.result);
+	console.log(ids); 
+	console.log(data.type);
+	
+	var nws =[
+	840 / 3 * 2,
+	840 / 4 * 3,
+	840 / 5 * 3,
+	840 / 6 * 3,
+	840 / 8 * 5,
+	]; 
+
+
+	if(data.type == 0){
+		
+		cnt = keys.length;
+			nw = nws[1]; 
+
+			for(var main_i=0; main_i<cnt; main_i++){
+				contag = '<div class="border" style="width: 1000px; height: 1000px;" id="borderline_{0}"><div style="width: 840px; height: 840px; margin: 80px;" id="img_body_{0}"></div></div>'.format(main_i);
+
+				$("#body").append(contag);
+				$("#borderline_" + main_i).css("top", main_i*1000);
+			}
+
+			var tag1 = "<img id='img_0_0' src='../static/upload/{1}'>".format(i, ids[0]);
+			var tag2 = "<img id='img_0_1' src='../static/upload/{1}'>".format(i, ids[0]);
+			$("#img_body_0").append(tag1);
+		$("#img_body_0").append(tag2);
+		$("#img_0_0").css("width", nw); 
+		$("#img_0_1").css("width", nw);  
+
+		tag1 = "<img id='img_1_0' src='../static/upload/{1}'>".format(i, ids[1]);
+			
+			tag2 = "<img id='img_1_1' src='../static/upload/{1}'>".format(i, ids[1]);
+			$("#img_body_1").append(tag1);
+		$("#img_body_1").append(tag2);
+		$("#img_1_0").css("width", nw); 
+		$("#img_1_1").css("width", nw);  
+		tag1 = "<img id='img_2_0' src='../static/upload/{1}'>".format(i, ids[0]);
+			
+			tag2 = "<img id='img_2_1' src='../static/upload/{1}'>".format(i, ids[1]);
+			$("#img_body_2").append(tag1);
+		$("#img_body_2").append(tag2);
+		$("#img_2_0").css("width", nw); 
+		$("#img_2_1").css("width", nw); 
+
+
+		setTimeout(function() {
+			var imgh = $("#img_0_1").css("height").replace('px',''); 
+			
+			if(imgh > 840){
+				console.log('over');
+
+				$("#img_0_0").css("height", 700); 
+				$("#img_0_1").css("height", 700);  
+				$("#img_1_0").css("height", 700); 
+				$("#img_1_1").css("height", 700);   
+				$("#img_2_0").css("height", 700); 
+				$("#img_2_1").css("height", 700); 
+
+				setTimeout(function() {
+					var imgw = $("#img_0_1").css("width").replace('px',''); 
+
+					nl = 1000- imgw - 80;
+					nt = 1000- 700 - 80;
+					$("#img_0_1").css("left", nl); 
+					$("#img_0_1").css("top", nt);  
+
+					imgw = $("#img_1_1").css("width").replace('px',''); 
+		 			
+					nl = 1000- imgw - 80;
+					nt = 1000- 700 - 80;
+					$("#img_1_1").css("left", nl); 
+					$("#img_1_1").css("top", nt);  
+
+
+					imgw = $("#img_2_1").css("width").replace('px',''); 
+					nl = 1000- imgw - 80;
+					nt = 1000- 700 - 80;
+					$("#img_2_1").css("left", nl); 
+					$("#img_2_1").css("top", nt);  
+
+				},10); 
+			}
+			else
+			{
+				nl = 1000- nw - 80;
+				nt = 1000- imgh - 80;
+				$("#img_0_1").css("left", nl); 
+				$("#img_0_1").css("top", nt);  
+
+				imgh = $("#img_1_1").css("height").replace('px',''); 
+	 			
+				nl = 1000- nw - 80;
+				nt = 1000- imgh - 80;
+				$("#img_1_1").css("left", nl); 
+				$("#img_1_1").css("top", nt);  
+
+
+				imgh = $("#img_2_1").css("height").replace('px',''); 
+				nl = 1000- nw - 80;
+				nt = 1000- imgh - 80;
+				$("#img_2_1").css("left", nl); 
+				$("#img_2_1").css("top", nt);  
+			}
+		}, 50);
+	}
+	else{
+		cnt = Number(values[0]);
+		if(cnt ==1){ 
+			for(var main_i=0; main_i<ids.length; main_i++){
+				contag = '<div class="border" style="width: 1000px; height: 1000px;" id="borderline_{0}"><div style="width: 840px; height: 840px; margin: 80px;" id="img_body_{0}"></div></div>'.format(main_i);
+
+				$("#body").append(contag);
+
+				var tag = "<img id='img_{0}' src='../static/upload/{1}'>".format(main_i, ids[main_i]);
+				$("#img_body_"+main_i).append(tag);
+
+				idtxt = "#img_{0}".format(main_i);
+				$(idtxt).css("height", 840); 
+
+				var imgw = $(idtxt).css("width").replace("px",''); 
+				var nl = 500 - (imgw/2);
+				$(idtxt).css("left", nl);  
+			} 
+		}
+		else{   
+			//cnt = 5
+			nw = nws[cnt-1];
+
+			for(var main_i=0; main_i<ids.length; main_i++){
+				contag = '<div class="border" style="width: 1000px; height: 1000px;" id="borderline_{0}"><div style="width: 840px; height: 840px; margin: 80px;" id="img_body_{0}"></div></div>'.format(main_i);
+
+				$("#body").append(contag);
+				$("#borderline_" + main_i).css("top", main_i*1000);
+
+				dish = 0;
+				disc = 0;
+				for(var i=0; i<cnt; i++){
+
+					var tag = "<img id='img_{0}_{1}' src='../static/upload/{2}'>".format(main_i, i, ids[main_i]);
+					//$("#img_body").append(tag);
+					$("#img_body_"+main_i).append(tag);
+		 
+					//console.log(imgh); 
+					idtxt = "#img_{0}_{1}".format(main_i, i);
+					$(idtxt).css("width", nw);  
+				}  
+			}
+
+			setTimeout(function(){ 
+				for(var main_i=0; main_i<ids.length; main_i++){ 
+					for(var i=0; i<cnt; i++){ 
+						idtxt = "#img_{0}_{1}".format(main_i, i);
+						var imgh = Number($(idtxt).css("height").replace('px','')); 
+						if (i==0){
+							dish = 1000- 80 - nw-80;
+							disc = 1000- 80 - imgh-80; 
+							dish = dish/(cnt-1);
+							disc = disc/(cnt-1); 
+						}
+
+						nl = 80 + (dish * i);
+						nt = 80 + (disc * i);//+ (1000*main_i);
+						$(idtxt).css("left", nl); 
+						$(idtxt).css("top", nt);  
+					}  
+				}
+			}, 50);
+		}
+	} 
+
+	if(getParameters('isdown')==1)
+	{
+		setTimeout(function(){
+			isdown();
+
+		}, 50)
+		
+	}
+});
+
+function isdown()
+{
+	$("#btn_capture").click();
+
+}
+
+   
+$("#btn_capture").click(function(){ 
+	//html2img();
+	var i = 0;
+
+	borders = new Array();
+	$('[id^="borderline_"]').each(function(){
+		var ids = $(this).attr('id');
+		borders.push("#"+ids);
+	});
+ 
+
+	for(var i=0; i<borders.length; i++)
+	{
+		html2img(borders[i], i); 
+	}
+
+
+	if(getParameters('isdown')==1){
+		setTimeout(function(){
+			window.close();
+		}, 500)
+	}
+});
+
+
+function html2img(idtxt, idx){  
+
+	html2canvas(document.querySelector(idtxt)).then(canvas => {
+	    var a = document.getElementById("downloadlink");
+
+	    a.href = canvas.toDataURL("image/jpeg").replace("Image/jpeg", "image/octet-stream");
+	    a.download = 'th_{0}_{1}.jpg'.format(getParameters('combi_id'),idx);
+	    a.click();
+	    //document.body.appendChild(canvas)
+	}); 
+}
+
+
+
+});
+
+</script>
+</body>
+</html>

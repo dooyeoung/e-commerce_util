@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>soul food </title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="shortcut icon" href="#">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+	<!-- jQuery UI CSS --> 
+    <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
+    
+
+    <!-- Bootstrap styling for Typeahead -->
+    <link href="../static/css/tokenfield-typeahead.css" type="text/css" rel="stylesheet">
+    <!-- Tokenfield CSS -->
+    <link href="../static/css/bootstrap-tokenfield.css" type="text/css" rel="stylesheet">
+ 
+</head>
+<style type="text/css">
+  td, th, .btn{
+    font-size: 12px;
+  }
+  .btn{
+    line-height: 1;
+  }
+
+  .span_cls{ 
+    font-size: 12px;  
+    padding-left: 4px;
+    padding-right: 4px; 
+    padding-top: 2px;
+    padding-bottom: 2px; 
+    margin-top: 3px;
+    margin-right: 2px;
+    display: inline-block; 
+  }
+</style>
+<body> 
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="#">SoulFood</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="btn_nav_add">추가 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#" id="btn_nav_list">목록 </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="btn_nav_manage">판매조합</a>
+      </li> 
+    </ul>
+  </div>
+</nav>
+<br/> 
+  
+<!-- data-toggle="modal" data-target="#myModal" -->
+<div class="container">
+  <input class="form-control form-control-sm" type="text" id="txt_search" placeholder="검색">
+
+  <button type="button" class="btn btn-primary btn-sm" id="btn_combine" >조합등록</button>
+  <button type="button" class="btn btn-primary btn-sm" id="btn_uncheck">Uncheck</button>
+  <button type="button" class="btn btn-primary btn-sm" id="btn_check">Check</button>
+  <button type="button" class="btn btn-primary btn-sm" id="btn_down1">down1</button>
+  <button type="button" class="btn btn-primary btn-sm" id="btn_down2">down2</button>
+  <button type="button" class="btn btn-primary btn-sm" id="btn_down_stop">stop</button>
+
+ <table class="table table-sm text-center" >
+  <thead>
+    <tr>
+      <th scope="col" class='text-center'>#</th>
+      <th scope="col" class='text-center'>#</th>
+      <th scope="col" class='text-center'>ID</th>
+      <th scope="col" class='text-center'>제품명</th>
+      <th scope="col" class='text-center'>가격</th>
+      <th scope="col" class='text-center'>용량</th>
+      <th scope="col" class='text-center'>제조사</th>
+      <th scope="col" class='text-center'>유형</th>
+      <th scope="col" class='text-center'>#</th>
+      <th scope="col" class='text-center'>#</th>
+      <th scope="col" class='text-center'>#</th>
+      <th scope="col" class='text-center'>#</th>
+    </tr>
+  </thead>
+  <tbody id="table_body">
+  </tbody>
+</table>
+</div>
+
+<br/> 
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Combine</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body"> 
+          <div class="container" id="modal_body"></div>
+          <br/>
+          <div class="container" id="modal_body_mid">   
+            <div class="form-group row">
+              <label for="input_type" class="col-sm-2 col-form-label">Type</label>
+              <div class="col-sm-10">
+                <select id="input_type" class="form-control">
+                  <option >0</option>
+                  <option selected>1</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="input_amount" class="col-sm-2 col-form-label">Amount</label>
+              <div class="col-sm-10">
+                <input type="Number" class="form-control" id="input_amount" placeholder="Amount" value=2>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="input_price" class="col-sm-2 col-form-label">Price</label>
+              <div class="col-sm-10">
+                <input type="Number" class="form-control" id="input_price" placeholder="price" value=2000>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="container">
+            <table class="table table-sm">
+              <tbody id="modal_table_body"> 
+              </tbody>
+            </table> 
+
+            <div class="form-group row">
+              <label for="input_title" class="col-sm-2 col-form-label">Title</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="input_title" placeholder="Title">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="btn_add_combi">Add</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
+
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../static/js/bootstrap-tokenfield.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/js/typeahead.bundle.min.js" charset="UTF-8"></script>
+
+<script src="../static/js/bootstrap3-typeahead.min.js"></script>
+
+
+<script type="text/javascript">
+function sleep(ms){
+  ts1 = new Date().getTime() + ms;
+  do ts2 = new Date().getTime(); while (ts2<ts1);
+}
+
+String.prototype.format = String.prototype.f = function() {
+  var s = this,
+    i = arguments.length;
+  while (i--) {
+      s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+  }
+  return s;
+}; 
+
+function permutator(inputArr) {
+  var results = []; 
+  
+  function permute(arr, memo) {
+    var cur, memo = memo || [];
+
+    for (var i = 0; i < arr.length; i++) {
+      cur = arr.splice(i, 1);
+      if (arr.length === 0) {
+        results.push(memo.concat(cur));
+      }
+      permute(arr.slice(), memo.concat(cur));
+      arr.splice(i, 0, cur[0]);
+    } 
+    return results;
+  }
+  return permute(inputArr);
+}
+
+
+function combinations(set) {
+  var k, i, combs, k_combs;
+  combs = [];
+  
+  // Calculate all non-empty k-combinations
+  for (k = 1; k <= set.length; k++) {
+    k_combs = k_combinations(set, k);
+    for (i = 0; i < k_combs.length; i++) {
+      combs.push(k_combs[i]);
+    }
+  }
+  return combs;
+}
+
+function k_combinations(set, k) {
+  var i, j, combs, head, tailcombs; 
+  
+  // There is no way to take e.g. sets of 5 elements from
+  // a set of 4.
+  if (k > set.length || k <= 0) {
+    return [];
+  }
+  
+  // K-sized set has only one K-sized subset.
+  if (k == set.length) {
+    return [set];
+  }
+  
+  // There is N 1-sized subsets in a N-sized set.
+  if (k == 1) {
+    combs = [];
+    for (i = 0; i < set.length; i++) {
+      combs.push([set[i]]);
+    }
+    return combs;
+  } 
+
+
+  combs = [];
+  for (i = 0; i < set.length - k + 1; i++) {
+    // head is a list that includes only our current element.
+    head = set.slice(i, i + 1);
+    // We take smaller combinations from the subsequent elements
+    tailcombs = k_combinations(set.slice(i + 1), k - 1);
+    // For each (k-1)-combination we join it with the current
+    // and store it to the set of k-combinations.
+    for (j = 0; j < tailcombs.length; j++) {
+      combs.push(head.concat(tailcombs[j]));
+    }
+  }
+  return combs;
+}
+
+function view(id, isdown){
+	window.open('/view_item?item_id={0}&isdown={1}'.format(id,isdown), '_blank');
+}
+
+function img(id, isdown){
+  window.open('/view_img?item_id={0}&isdown={1}'.format(id,isdown), '_blank');
+}
+
+function delete_img(id){ 
+  var con_test = confirm("정말 삭제하시겠습니까?");
+  if(con_test == true){
+  //   delete_data = {'id':id};
+  //   $.post('/delete/', delete_data).done(function(data){  
+  //     $("#table_body").empty();
+  //     get_list();
+  //   });
+  }
+  else if(con_test == false){ 
+  } 
+}
+ 
+function get_list(items){ 
+  for(var i=0; i< items.length; i++){ 
+
+    var check_tag = '<td><input type="checkbox" class="form-check-input" id="check_'+items[i][0]+'"></td>';
+
+    var edit_tag = '<td><button type="button" class="btn btn-info btn-sm" onclick="edit('+items[i][0]+')">Edit</button></td>';
+
+    var nutrition_tag = '<td><button type="button" class="btn btn-info btn-sm" onclick="view('+items[i][0]+', 0)">View</button></td>';
+
+    var img_tag = '<td><button type="button" class="btn btn-info btn-sm" onclick="img('+items[i][0]+', 0)">Image</button></td>';
+
+    var del_tag = '<td><button type="button" class="btn btn-danger btn-sm" onclick="delete_img('+items[i][0]+')">Delete</button></td>';
+
+    var tag = "<tr id='tr_{11}'><td>{12}</td>{0}<td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td>{7}{8}{9}{10}</tr>".f(
+      check_tag,
+      items[i][0],items[i][1],items[i][2],
+      items[i][3]+'g',items[i][4],items[i][5],
+      edit_tag, nutrition_tag, img_tag, del_tag, items[i][0], i+1);
+
+    $("#table_body").append(tag);
+  } 
+}
+
+
+
+$(document).ready(function(){  
+  $.post('/list/' ).done(function(data){ 
+    var items = data.result; 
+    get_list(items);
+  });
+
+ 
+
+	$("#btn_nav_add").click(function()
+	{ 
+		location.href="/"; 
+	});
+
+	$("#btn_nav_manage").click(function()
+	{
+		location.href="/add_manager/";
+	});
+
+	$("#btn_nav_list").click(function()
+	{
+		location.href="/list/";
+	}); 
+
+
+
+  $("#btn_down_stop").click(function(){
+    clearInterval(repeat);
+  });
+
+
+
+  $("#btn_down2").click(function(){
+    var idarr = new Array();
+    $('input:checkbox[id^="check_"]:checked').each(function(){
+      var idtxt = $(this).attr("id").replace('check_','');
+      //view(Number(idtxt));
+      idarr.push(Number(idtxt));
+    }); 
+
+    var i=0;
+    repeat = setInterval(function(){
+      //console.log(idarr[i]);
+      img(idarr[i], 1);  
+
+      i++;
+      if(i == idarr.length){
+        clearInterval(repeat);
+      }
+    }, 700);
+  });
+
+
+
+  var repeat;
+  $("#btn_down1").click(function(){
+    var idarr = new Array();
+    $('input:checkbox[id^="check_"]:checked').each(function(){
+      var idtxt = $(this).attr("id").replace('check_','');
+      //view(Number(idtxt));
+      idarr.push(Number(idtxt));
+    }); 
+ 
+    var i=0;
+    repeat = setInterval(function(){
+      //console.log(idarr[i]);
+      view(idarr[i], 1);  
+
+      i++;
+      if(i == idarr.length){
+        clearInterval(repeat);
+      }
+    }, 700);
+  });
+
+  //조합등록
+  var idarr = new Array();
+  var txtarr = new Array();
+  $("#btn_combine").click(function(){
+    idarr = [];
+    txtarr = [];
+    //선태된 아이템 목록
+    $('input:checkbox[id^="check_"]:checked').each(function(){
+      var idtxt = $(this).attr("id");
+      idtxt = Number(idtxt.replace("check_", ""));
+      idarr.push(idtxt);
+    }); 
+     
+    //하나라도 등록되어있다면
+    if(idarr.length > 0){  
+      $("#modal_body").empty();
+      var tagtxt = ''; 
+      $('[id^="tr_"]').each(function(){
+        //id 추출
+        oid = Number($(this).attr("id").replace("tr_",""));
+
+        //check
+        if(idarr.includes(oid)){ 
+          tagtxt = $(this).children("td:nth-child(4)").text();
+
+          txtarr.push(tagtxt);
+          var tag = "<span class='span_cls border border-default rounded'>{0}</span>".format(tagtxt);
+          $("#modal_body").append(tag);
+        }
+      }); 
+      getcombination();  
+      $('#myModal').modal();
+    }
+    else{
+      alert("선택 하세요");
+    } 
+  });
+
+
+  $("#txt_search").change(function(){
+    var txt = $("#txt_search").val();
+     
+    search = {'txt':txt};
+    $.post('/search_item/', search).done(function(data){ 
+      $("#table_body").empty();
+      var items = data.result; 
+      get_list(items);
+    });
+  });
+
+
+  //type 변경
+  $("#input_type").change(function(){
+    getcombination();
+  });
+
+  //$("#input_amount").on('keyup mouseup', function() { 
+  $("#input_amount").change(function(){ 
+    getcombination();
+  });
+
+  $("#btn_check").click(function(){
+    $("input:checkbox[id^='check_']").each(function(){
+      this.checked = true;
+    });
+  });
+
+  $("#btn_uncheck").click(function(){
+    $("input:checkbox[id^='check_']:checked").each(function(){
+      this.checked = false;
+    });
+  });
+
+  $("#btn_add_combi").click(function(){   
+
+    var type = $("#input_type").val() 
+    var dict = {};
+    $("#modal_table_body>tr").each(function(){
+      var id = $(this).children("td:nth-child(2)").text();
+      var amt = $(this).children("td:nth-child(3)").text();
+      
+      dict[id] = Number(amt);
+    });
+    
+    var title = $("#input_title").val(); 
+    var price = $("#input_price").val();
+    var cdata = {'title':title, 'combi': JSON.stringify(dict), 'type':type, 'price':price};
+
+    console.log(cdata);
+    $.post('/add_combi/', cdata).done(function(data){ 
+    });
+
+    $("#myModal").modal("hide"); 
+  });
+
+  function getcombination(){ 
+    var type = Number($("#input_type").val());
+    $("#modal_table_body").empty();
+    switch(type) 
+    {
+      case 0:  
+        //순열과 조합으로 완성해야함
+        //지금은 2개아이템만 조합으로 구성했기에 알고리즘 미완성
+        $("#amount_cont").css("display", "none");
+        console.log(idarr);
+        console.log(txtarr); 
+        var count = txtarr.length;
+        var combi_txt = combinations(txtarr); 
+        var combi_id = combinations(idarr);
+  
+        for(var i=0; i<combi_txt.length; i++){ 
+          cd = combi_txt[i]; 
+          id = combi_id[i];
+          if(count == combi_txt[i].length){
+
+            var cnt = count - (cd.length-1);
+
+            tag = "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>".format(cd,id, cnt); 
+            $("#modal_table_body").append(tag);
+            continue;
+          }
+
+          var per_txt = permutator(cd);
+          var per_id = permutator(id);
+          for(var j=0; j<per_txt.length; j++)
+          {
+            pd = per_txt[j];
+            pd_id = per_id[j]
+
+            var cnt = count - (pd.length-1);
+            var cnt_res = new Array();
+            for(var k=0; k<pd.length; k++){ 
+              cnt_res.push(cnt - k);
+            }
+
+            tag = "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>".format(pd, pd_id, cnt_res); 
+ 
+            $("#modal_table_body").append(tag);
+          } 
+        } 
+      break;
+      case 1:  
+        $("#amount_cont").css("display", "");
+        var amt = $("#input_amount").val();
+        for(var i=0; i<txtarr.length; i++){
+          tag = "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>".format(txtarr[i], idarr[i],amt); 
+          $("#modal_table_body").append(tag);
+        } 
+
+      break;
+      default: 
+    } 
+  }
+
+
+});
+</script>
+
+</body>
+</html>
